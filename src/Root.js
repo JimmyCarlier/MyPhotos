@@ -8,6 +8,7 @@ import HomePage from "./Pages/HomePage";
 import SignUp from "./Pages/SignUp";
 import SignIn from "./Pages/SignIn";
 import './Root.css';
+import NotFound from "./Pages/NotFound";
 // Router singleton created
 const router = createBrowserRouter([
   { path: "*", Component: Root },
@@ -23,7 +24,8 @@ function Root() {
     <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/inscription" element={<SignUp />} />
-      <Route path="/connexion" element={<SignIn />} />   
+      <Route path="/connexion" element={<SignIn />} />
+      <Route path="*" element={<NotFound />} />  
     </Routes>
   );
 }
