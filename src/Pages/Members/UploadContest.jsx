@@ -15,20 +15,17 @@ const UploadContest = () => {
 
         const formData = new FormData();
         for (let i = 0; i < e.target.length-1; i++) {
-            // console.log(e.target[i].value);
-            // console.log(file[i].name);
-            //file[i] && e.target[i].value
-            formData.append("file", file[i], file[i].name);
+            formData.append("file", file[i]);
             formData.append("description", e.target[i].value);
         }
 
-        // const uploadPhotos = fetch("http://localhost:3001/file/upload", {
-        //     method: "POST",
-        //     body: formData,
-        // })
-        // uploadPhotos.then((res) => {
-        //     console.log(res);
-        // });
+        const uploadPhotos = fetch("http://localhost:3000/file/upload", {
+            method: "POST",
+            body: formData,
+        })
+        uploadPhotos.then((res) => {
+            console.log(res);
+        });
     };
     return (
         <section className="UploadContainer">
