@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import Header from "../Components/Header";
-
+import { SecurityCheckSession } from "../Components/SecurityCheckSession";
 const HomePage = () => {
+    
+    useEffect(() => {
+        document.title = "Home Page";
+        SecurityCheckSession();
+    }, []);
+
     return (
         <div>
             <Header />
