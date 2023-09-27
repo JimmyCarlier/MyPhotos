@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { SecurityCheckSession } from "../Components/SecurityCheckSession";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import Header from "../Components/Header";
 
 const SignIn = () => {
     const [error, setError] = useState(null);
@@ -62,31 +63,34 @@ const SignIn = () => {
         }
     }
     return (
-        <section>
-            <h1>SignIn</h1>
-            {error && <p>{error}</p>}
-            <form onSubmit={handleSubmitSignIn}>
-                <div className="signInFormEmail">
-                    <label>Email :</label>
-                    <input type="text" placeholder="Email" />
-                </div>
-                <div className="signInFormPassword">
-                    <label>Mot de passe :</label>
-                    <input id="passwordInput" type="password" placeholder="Password" />
-                </div>
-                <div className="signInFormConfirmPassword">
-                    <label>Afficher mot de passe</label>
-                    <input type="checkbox" onChange={handleSeeUnseePassword}/>
-                </div>
-                <div className="signInFormParaLink">
-                    <p>Mot de passe oublié ?<Link>cliquez ici</Link></p>
-                    <p>Pas encore inscrit ?<Link>inscrivez-vous !</Link></p>
-                </div>
-                <div>
-                    <button type="submit">Sign In</button>
-                </div>
-            </form>
-        </section>
+        <>
+            <Header />
+            <section>
+                <h1>SignIn</h1>
+                {error && <p>{error}</p>}
+                <form onSubmit={handleSubmitSignIn}>
+                    <div className="signInFormEmail">
+                        <label>Email :</label>
+                        <input type="text" placeholder="Email" />
+                    </div>
+                    <div className="signInFormPassword">
+                        <label>Mot de passe :</label>
+                        <input id="passwordInput" type="password" placeholder="Password" />
+                    </div>
+                    <div className="signInFormConfirmPassword">
+                        <label>Afficher mot de passe</label>
+                        <input type="checkbox" onChange={handleSeeUnseePassword}/>
+                    </div>
+                    <div className="signInFormParaLink">
+                        <p>Mot de passe oublié ?<Link>cliquez ici</Link></p>
+                        <p>Pas encore inscrit ?<Link>inscrivez-vous !</Link></p>
+                    </div>
+                    <div>
+                        <button type="submit">Sign In</button>
+                    </div>
+                </form>
+            </section>
+        </>
     )
 }
 
