@@ -7,7 +7,11 @@ const HomePage = () => {
     const response = await fetch(`http://localhost:3000/file/allPhotos/`);
     const responseJson = await response.json();
     console.log(responseJson.data);
-    setPhoto(responseJson.data);
+
+    const array = [...responseJson.data];
+    array.sort((a, b) => 0.5 - Math.random());
+
+    setPhoto(array);
   };
 
   useEffect(() => {
