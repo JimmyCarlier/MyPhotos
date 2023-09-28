@@ -1,17 +1,28 @@
 .top5Photos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    margin-top: 20px;
     flex-direction: column;
+    width: 40%;
+    background-color: rgb(255, 255, 255, 0.8);
+    gap: 20px;
+    border-radius: 15px;
+    padding: 20px;
     }
 
     .top5Photos img {
-    width: 200px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     margin: 10px;
     object-fit: cover;
+    border-radius: 20px;
+    margin: 0;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    }
+    .top5Photos .singlePhoto{
+    display: flex;
+    align-items: center;
+    color: black;
     }
 
     .admin-dashboard {
@@ -20,5 +31,96 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        min-height: 150vh;
+        padding-top: 100px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .singlePhoto{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .singlePhoto div{
+        position: relative;
+        width: 192px;
+        height: 108px;
+        min-width: 192px;
+        min-height: 108px;
+        margin-left: 20px;
+    }
+
+    .singlePhoto div .overPhotoVotes{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        opacity: 1;
+        transition: all 0.5s ease-in-out;
+        transform: translate(-50%, 50%);
+        border-radius: 5px;
+        padding: 1px 10px;
+    }
+
+    .singlePhoto1 div .overPhotoVotes{
+        background-color: goldenrod;
+    }
+    .singlePhoto2 div .overPhotoVotes{
+        background-color: silver;
+    }
+    .singlePhoto3 div .overPhotoVotes{
+        background-color: burlywood;
+    }
+
+    .singlePhoto4 div .overPhotoVotes, .singlePhoto5 div .overPhotoVotes{
+        background-color: white;
+        border: 1px solid grey;
+    }
+
+    .top5title{
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px;
+        display: flex;
+        gap: 20px;
+    }
+
+    .linksStatsAndWaiting{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 20px;
+        width: 50%;
+    }
+
+    .linksStatsAndWaiting a{
+        width: 70%;
+        height: 100px;
+        min-width: 250px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        border-radius: 20px;
+        padding-left: 50px;	
+    }
+    .linksStatsAndWaiting>a>span:nth-child(1), .linksStatsAndWaiting>a>svg:nth-child(1){
+        margin-left: auto;
+        position: relative;
+    }
+    .linksStatsAndWaiting>a>span:nth-child(1){
+        width: 80px;
+    }
+    .linksStatsAndWaiting>a>span>span{
+        position: absolute;
+        top: -15px;
+        right: 15px;
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+        background-color: red;
+        border-radius: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
     }
