@@ -13,3 +13,12 @@
     margin: 10px;
     object-fit: cover;
     }
+
+    .admin-dashboard {
+        background-image: url("../../../../../public/AdminDashBoardBackground.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 150vh;
+    }
