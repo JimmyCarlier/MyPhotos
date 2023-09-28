@@ -11,6 +11,7 @@ import "./Root.css";
 import NotFound from "./Pages/NotFound";
 import PageMentionLegal from "./Pages/PageMentionLegal";
 import UploadContest from "./Pages/Members/UploadContest";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
 // Router singleton created
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
 
@@ -27,7 +28,7 @@ function Root() {
       <Route path="/connexion" element={<SignIn />} />
       <Route path="/mention" element={<PageMentionLegal />}></Route>
       <Route path="/member/upload" element={<UploadContest />} />
-
+      <Route path="/admin" element={<AdminDashboard />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

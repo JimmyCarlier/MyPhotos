@@ -15,7 +15,7 @@ const HomePage = () => {
     SecurityCheckSession();
     dataPicture();
   }, []);
-
+  
   return (
     <div>
       <Header />

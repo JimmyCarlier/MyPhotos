@@ -1,0 +1,24 @@
+.header-admin{
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+
+.header-admin img{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.header-admin svg{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    cursor: pointer;
+    color: white;
+}
