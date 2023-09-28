@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { SecurityCheckSession } from "../Components/SecurityCheckSession";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import Header from "../Components/Header";
 
 const SignIn = () => {
     const [error, setError] = useState(null);
@@ -11,21 +12,21 @@ const SignIn = () => {
         e.preventDefault();
         const email = e.target[0].value;
         const password = e.target[1].value;
-
         const user = {
             email,
             password
         }
-        const response = await fetch('http://localhost:3000/user/signin', {
+        const response = await fetch('http://localhost:3000/user/signin',
+        {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify(user)
         })
-        const myLogin = await response.json();
         //check status
         if (response.status === 200) {
+            const myLogin = await response.json();
             //Split token to localStorage and js cookies
             let tokenLength = myLogin.length;
             //slice firsthalf of token
@@ -44,12 +45,11 @@ const SignIn = () => {
             if (userData.role === 2) {
                 navigate("/membre")
             }
-        } else if(response.status === 400) {
-            setError(`Erreur, veuillez réessayer`)
-        } else if(response.status === 401) {
+        }
+        if(response.status === 401 || response.status === 400) {
             setError(`Les identifiants sont incorrect, veuillez réessayer`)
         } else {
-            setError("Une erreur est survenue")
+            setError(`Erreur, veuillez réessayer`)
         }
     }
 
@@ -62,31 +62,34 @@ const SignIn = () => {
         }
     }
     return (
-        <section>
-            <h1>SignIn</h1>
-            {error && <p>{error}</p>}
-            <form onSubmit={handleSubmitSignIn}>
-                <div className="signInFormEmail">
-                    <label>Email :</label>
-                    <input type="text" placeholder="Email" />
-                </div>
-                <div className="signInFormPassword">
-                    <label>Mot de passe :</label>
-                    <input id="passwordInput" type="password" placeholder="Password" />
-                </div>
-                <div className="signInFormConfirmPassword">
-                    <label>Afficher mot de passe</label>
-                    <input type="checkbox" onChange={handleSeeUnseePassword}/>
-                </div>
-                <div className="signInFormParaLink">
-                    <p>Mot de passe oublié ?<Link>cliquez ici</Link></p>
-                    <p>Pas encore inscrit ?<Link>inscrivez-vous !</Link></p>
-                </div>
-                <div>
-                    <button type="submit">Sign In</button>
-                </div>
-            </form>
-        </section>
+        <>
+            <Header />
+            <section>
+                <h1>SignIn</h1>
+                {error && <p>{error}</p>}
+                <form onSubmit={handleSubmitSignIn}>
+                    <div className="signInFormEmail">
+                        <label>Email :</label>
+                        <input type="text" placeholder="Email" />
+                    </div>
+                    <div className="signInFormPassword">
+                        <label>Mot de passe :</label>
+                        <input id="passwordInput" type="password" placeholder="Password" />
+                    </div>
+                    <div className="signInFormConfirmPassword">
+                        <label>Afficher mot de passe</label>
+                        <input type="checkbox" onChange={handleSeeUnseePassword}/>
+                    </div>
+                    <div className="signInFormParaLink">
+                        <p>Mot de passe oublié ?<Link>cliquez ici</Link></p>
+                        <p>Pas encore inscrit ?<Link>inscrivez-vous !</Link></p>
+                    </div>
+                    <div>
+                        <button type="submit">Sign In</button>
+                    </div>
+                </form>
+            </section>
+        </>
     )
 }
 
