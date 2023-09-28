@@ -11,6 +11,7 @@ import "./Root.css";
 import NotFound from "./Pages/NotFound";
 import PageMentionLegal from "./Pages/PageMentionLegal";
 import UploadContest from "./Pages/Members/UploadContest";
+import EspaceMembre from "./Pages/Members/EspaceMembre";
 // Router singleton created
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
 
@@ -26,6 +27,7 @@ function Root() {
       <Route path="/inscription" element={<SignUp />} />
       <Route path="/connexion" element={<SignIn />} />
       <Route path="/mention" element={<PageMentionLegal />}></Route>
+      <Route path="/member" element={<EspaceMembre />}></Route>
       <Route path="/member/upload" element={<UploadContest />} />
 
       <Route path="*" element={<NotFound />} />
