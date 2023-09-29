@@ -9,10 +9,10 @@ import Footer from "../Components/Footer";
 const HomePage = () => {
   const [photo, setPhoto] = useState([]);
   const [vote, setVote] = useState();
+  const [availableVote, setAvailableVote] = useState(3);
   const dataPicture = async () => {
     const response = await fetch(`http://localhost:3000/file/allPhotos/`);
     const responseJson = await response.json();
-    console.log(responseJson.data);
 
     const array = [...responseJson.data];
     array.sort((a, b) => 0.5 - Math.random());
@@ -21,9 +21,14 @@ const HomePage = () => {
   };
 
   const handleVote = async (picture) => {
+    let titleTexte;
+    if (availableVote === 1) {
+      titleTexte = `Vous êtes sur le point d'utiliser votre dernier vote`;
+    } else {
+      titleTexte = `Vous êtes sur le point d'utiliser un de vos ${availableVote} votes disponible`;
+    }
     Swal.fire({
-      title:
-        "Vous êtes sur le point d'utiliser votre vote du jour pour cette photo.",
+      title: titleTexte,
       text: "Validez vous votre choix ?",
       icon: "question",
       iconColor: "white",
@@ -37,7 +42,20 @@ const HomePage = () => {
       allowOutsideClick: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        setAvailableVote(availableVote - 1);
+        Swal.fire("Vote validé");
+        if (!localStorage.getItem("vote")) {
+          localStorage.setItem("vote", 0);
+        }
+        var attempts = parseInt(localStorage.getItem("vote"));
+        localStorage.setItem("vote", ++attempts);
+
+        if (parseInt(localStorage.getItem("vote")) === 1) {
+          const day = {
+            date: Date.now(),
+          };
+          localStorage.setItem("date", day.date);
+        }
         const addVote = {
           votes: picture.votes + 1,
         };
@@ -48,12 +66,12 @@ const HomePage = () => {
           method: "PUT",
           headers: {
             "Content-type": "application/json",
-            authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(addVote),
         };
+
         const fetchUpdate = await fetch(
-          `http://localhost:3000/file/update/${picture.id}`,
+          `http://localhost:3000/file/updateVote/${picture.id}`,
           fetchOption
         );
 
@@ -61,12 +79,28 @@ const HomePage = () => {
       }
     });
   };
+  if (
+    localStorage.getItem("vote") &&
+    parseInt(localStorage.getItem("vote")) === 3
+  ) {
+    const allBtn = document.querySelectorAll(".btn-disapear");
+    allBtn.forEach((e) => {
+      e.style.display = "none";
+    });
+  }
 
+  if (
+    localStorage.getItem("date") &&
+    parseInt(localStorage.getItem("date")) + 86400000 <= Date.now()
+  ) {
+    localStorage.removeItem("date");
+    localStorage.removeItem("vote");
+  }
   useEffect(() => {
     document.title = "Home Page";
     SecurityCheckSession();
     dataPicture();
-  }, [vote]);
+  }, []);
 
   return (
     <>
@@ -96,9 +130,9 @@ const HomePage = () => {
                     <img src={"http://localhost:3000/" + e.file} alt="" />
                     <div className="container-infoPicture">
                       <p>{e.description}</p>
-                      <p>Nombre de votes : {e.votes}</p>
+
                       <button
-                        className="btn-choose"
+                        className="btn-choose btn-disapear"
                         onClick={() => handleVote(e)}
                       >
                         Voter
