@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 
 export const SecurityCheckSession = () => {
     let session;
-    const CookieSession = Cookies.get('session') && Cookies.get('session');
-    const LocalSession = localStorage.getItem('session') && localStorage.getItem('session');
+    const CookieSession = Cookies.get('session') ? Cookies.get('session'): null;
+    const LocalSession = localStorage.getItem('session') ? localStorage.getItem('session') : null;
     
     if (CookieSession && LocalSession) {
         session = LocalSession.concat(CookieSession);
