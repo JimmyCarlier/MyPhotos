@@ -6,12 +6,14 @@ import HeaderAdmin from "../../Components/admin/HeaderAdmin";
 import Top5Admin from "../../Components/admin/Top5Admin";
 import Cookies from "js-cookie";
 import { Editor } from "@tinymce/tinymce-react";
+import { is } from "@babel/types";
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
     const [Top5Photos, setTop5Photos] = useState([]);
     const [nbVotesToday, setNbVotesToday] = useState(0);
     const [nbWaitingPhotos, setNbWaitingPhotos] = useState(0);
+    const [textCGU, setTextCGU] = useState("");
 
     const unpublishedPhotos = async () => {
         const response = await fetch('http://localhost:3000/file/unpublished', {
@@ -22,7 +24,29 @@ const AdminDashboard = () => {
         setNbWaitingPhotos(responseJson.data.length)
     }
 
+    const legalMention = async () => {
+        const response = await fetch("http://localhost:3000/cgu/show");
+        const responseJson = await response.json();
+        setTextCGU(responseJson.data);
+      };
 
+    const handleSendCGU = async () => {
+        const response = await fetch('http://localhost:3000/cgu/cguUpdate', {
+            method: 'PUT',
+            headers : {
+                "Content-Type": "application/json",
+                authorization : `Bearer ${localStorage.getItem('session').concat(Cookies.get('session'))}`
+            },
+            body: JSON.stringify({
+                cgu: textCGU
+            })
+        });
+        console.log(response)
+    }
+
+    const textDirectUpdate = (e) => {
+        setTextCGU(e.target.getContent());
+      }
 
     useEffect(() => {
 
@@ -32,6 +56,7 @@ const AdminDashboard = () => {
                navigate("/connexion")
            } else {
             unpublishedPhotos()
+            legalMention();
            }
        })()
     }, [])
@@ -55,29 +80,28 @@ const AdminDashboard = () => {
             <article className="modifCGU">
                 <h2>Modifier les CGUs du site</h2>
                 <div>
-                    {/* <Global
-                    styles={css`
-                        .tox-notifications-container {
-                        display: none !important;
-                        }
-                    `}
-                    /> */}
                     <Editor
                     // apiKey="y7gnmtbsaxnjbgh3405ioqbdm24eit5f0ovek49w8yvq5r9q"
-                    initialValue=""
+                    initialValue={textCGU}
                     init={{
                         branding: false,
                         height: 400,
                         menubar: true,
                         plugins:
                         "print preview paste searchreplace autolink directionality visualblocks visualchars fullscreen image link template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern",
-                        toolbar:
-                        "formatselect | bold italic underline strikethrough | forecolor backcolor blockquote | link image | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat",
-                        image_advtab: true
+                        toolbar: [
+                            { name: 'history', items: [ 'undo', 'redo' ] },
+                            { name: 'styles', items: [ 'styles' ] },
+                            { name: 'formatting', items: [ 'bold', 'italic' ] },
+                            { name: 'alignment', items: [ 'alignleft', 'aligncenter', 'alignright', 'alignjustify' ] },
+                            { name: 'indentation', items: [ 'outdent', 'indent' ] }
+                          ],
+                        image_advtab: true,
                     }}
-                    // onChange={this.onChange}
+                    onChange={textDirectUpdate}
                     />
                 </div>
+                <a onClick={handleSendCGU}>Enregistrer</a>
             </article>
         </section>
     </>

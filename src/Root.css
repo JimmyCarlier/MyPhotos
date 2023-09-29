@@ -42,4 +42,5 @@ textarea {
 
 #root{
   position: relative;
+  min-width: 375px;
 }
