@@ -128,40 +128,74 @@ const EspaceMembre = () => {
     <>
       <Header />
       <main>
-        <section>
+        <section className="user-interface">
           <div className="add-picture">
             <div>
-              <Link to="/member/upload">Ajouter une photo</Link>
+              <Link to="/member/upload">
+                <boutton className="btn-picture">Ajouter une photo</boutton>
+              </Link>
             </div>
             <div>
-              <button onClick={handleUpdatePsw}>
+              <button onClick={handleUpdatePsw} className="btn-update">
                 Modifier mon mot de passe
               </button>
             </div>
           </div>
-          <div>
+          <div className="header-filter">
             <h2>Mes photos</h2>
-            <p>
+            <p className="container-filter">
               Filtre :{" "}
-              <button onClick={() => handleValidPicture("publie")}>
+              <button
+                onClick={() => handleValidPicture("publie")}
+                className="btn-filter"
+              >
                 Validé
               </button>{" "}
-              <button onClick={() => handleValidPicture("nonpublie")}>
+              <button
+                onClick={() => handleValidPicture("nonpublie")}
+                className="btn-filter"
+              >
                 En attente
               </button>{" "}
-              <button onClick={() => handleValidPicture("rejete")}>
+              <button
+                onClick={() => handleValidPicture("rejete")}
+                className="btn-filter"
+              >
                 Rejeté
               </button>{" "}
-              <button onClick={() => handleValidPicture(null)}>Tout</button>
+              <button
+                onClick={() => handleValidPicture(null)}
+                className="btn-filter"
+              >
+                Tout
+              </button>
             </p>
           </div>
           <div className="own-picture">
             {picture.length != 0 && filter.length != 0 ? (
               filter.map((e) => {
-                return <img src={"http://localhost:3000/" + e.file} alt="" />;
+                return (
+                  <div className="container-ownPicture">
+                    <img
+                      src={"http://localhost:3000/" + e.file}
+                      alt=""
+                      className="picture-status"
+                    />
+                    ;{e.status === "publie" && <p>Votes : {e.votes}</p>}
+                    {e.status === "publie" && (
+                      <div className="published-pic">Publié</div>
+                    )}
+                    {e.status === "nonpublie" && (
+                      <div className="unpublished-pic">En attente</div>
+                    )}
+                    {e.status === "rejete" && (
+                      <div className="rejected-pic">Rejeté</div>
+                    )}
+                  </div>
+                );
               })
             ) : (
-              <p>Aucune photo</p>
+              <p className="empty">Aucune photo</p>
             )}
           </div>
         </section>

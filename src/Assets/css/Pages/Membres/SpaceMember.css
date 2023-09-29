@@ -1,15 +1,97 @@
 .add-picture {
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 50px;
+}
+
+.header-filter {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.container-filter {
+  background-color: rgba(0, 0, 0, 0.413);
+  padding: 20px 25px;
+  color: white;
+  border-radius: 15px;
+  display: flex;
+  gap: 70px;
+  align-items: center;
 }
 
 .own-picture {
   margin-bottom: 100px;
-}
-.own-picture img {
-  width: 500px;
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 5vw;
+  gap: 20px;
 }
 
-section {
+.own-picture p:first-child {
+  text-align: center;
+  padding-top: 150px;
+}
+
+.empty {
+  text-align: center !important;
+  margin: 0 auto;
+  padding-top: 50px !important;
+  font-size: 3rem;
+}
+
+.container-ownPicture {
+  text-align: center;
+  position: relative;
+}
+.own-picture img {
+  width: 600px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.user-interface {
   padding-top: 200px;
   padding-bottom: 200px;
+  background-image: url("../../../../../public//PhotoCarrouselDroite.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.published-pic {
+  position: absolute;
+  top: -4%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: green;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.unpublished-pic {
+  position: absolute;
+  top: -4%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: yellow;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.rejected-pic {
+  position: absolute;
+  top: -4%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: rgb(211, 7, 7);
+  padding: 10px 20px;
+  border-radius: 15px;
 }

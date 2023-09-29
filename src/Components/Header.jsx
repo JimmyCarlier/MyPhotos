@@ -52,12 +52,18 @@ const Header = () => {
               <li>Page de {user.user}</li>
 
               <li>
-                <div className="connexionIcon">
+                <Link to="/membre" className="connexionIcon">
+                  {" "}
                   <img src="/connexion.png" alt="connexion icon" />
-                </div>
+                </Link>
               </li>
               <li>
-                <button onClick={handleDisconnect}>Disconnect</button>
+                <span
+                  class="material-symbols-outlined leave"
+                  onClick={handleDisconnect}
+                >
+                  logout
+                </span>
               </li>
             </div>
           </menu>
