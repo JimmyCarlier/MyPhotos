@@ -17,6 +17,7 @@ a:active {
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
 select {
   width: 100%;
   padding: 12px 20px;
