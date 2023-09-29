@@ -44,9 +44,37 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-  height: 500px;
+  gap: 30px;
+  height: 100vh;
   position: relative;
+}
+
+.custom-shape-divider-top-1696005298 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1696005298 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 81px;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1696005298 .shape-fill {
+  fill: #1F4653;
+  z-index: -1;
+}
+
+.reglement-video div{
+
+  height: 90vh;
 }
 .container-picture {
   background-image: url("../../../public/AjouterunePhoto.jpg");
@@ -63,33 +91,39 @@
   display: flex;
   justify-content: center;
 }
+
 .container-picture div h3 {
   text-align: center;
-  font-size: 6rem;
+  font-size: 5rem;
   background-color: black;
   border-radius: 100px;
-  width: 30%;
   margin-top: 80px;
+  padding: 5px 15px;
   color: white;
 }
 
 .main-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding: 0 5vw;
 }
 
 .main-container img {
   width: 600px;
+  min-width: 375px;
   height: 350px;
+  min-height: 260px;
   object-fit: cover;
   border-radius: 15px;
 }
 
 .image-card {
   position: relative;
-  width: 45%;
+  width: 600px;
+  min-width: 375px;
+  height: 350px;
+  min-height: 260px;
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;

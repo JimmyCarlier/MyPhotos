@@ -124,7 +124,7 @@ const SignIn = () => {
             <div className="signInFormConfirmPassword"></div>
             <div className="signInFormParaLink">
               <p>
-                Pas encore inscrit ? <Link>inscrivez-vous !</Link>
+                Pas encore inscrit ? <Link to="/inscription">inscrivez-vous !</Link>
               </p>
               <div className="containerBTN">
                 <button type="submit">Se connecter</button>
