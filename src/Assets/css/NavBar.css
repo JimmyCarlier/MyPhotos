@@ -1,0 +1,19 @@
+.container {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.container-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 20px;
+}
+
+.boutton-nav {
+  display: flex;
+  gap: 80px;
+}
+
+.logo img {
+  height: 130px;
+}

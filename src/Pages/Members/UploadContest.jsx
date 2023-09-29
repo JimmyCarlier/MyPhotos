@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import "../../Assets/css/Pages/Membres/UploadContest.css";
+import { UseSession } from "../../Components/UseSession";
 
 const fileTypes = ["JPG", "PNG", "GIF"];
 
@@ -10,8 +11,9 @@ const UploadContest = () => {
     setFile([...fi]);
   };
   console.log(file);
-  const handleSubmitPhotos = (e) => {
+  const handleSubmitPhotos = async (e) => {
     e.preventDefault();
+    const token = UseSession();
 
     const formData = new FormData();
     for (let i = 0; i < e.target.length - 1; i++) {
@@ -22,9 +24,15 @@ const UploadContest = () => {
     const uploadPhotos = fetch("http://localhost:3000/file/upload", {
       method: "POST",
       body: formData,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
     uploadPhotos.then((res) => {
       console.log(res);
+      if (res.status === 200) {
+        window.location = "/member";
+      }
     });
   };
   return (

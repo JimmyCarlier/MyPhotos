@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const EnAttente = () => {
     const navigate = useNavigate();
     const [WaitingPhotos, setWaitingPhotos] = useState([]);
-    const [selectedPhotos, setSelectedPhotos] = useState([]); // [id1, id2, id3
+    const [selectedPhotos, setSelectedPhotos] = useState([]);
     const unpublishedPhotos = async () => {
         const response = await fetch('http://localhost:3000/file/unpublished', {
             method: 'GET',
@@ -17,6 +17,7 @@ const EnAttente = () => {
         const responseJson = await response.json();
         setWaitingPhotos(responseJson.data)
     }
+
     let thoseBtn = document.querySelectorAll(".containerBTN")
 
     const handleRemoveMultiplePublish = async (e) => {
