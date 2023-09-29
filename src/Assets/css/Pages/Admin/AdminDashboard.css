@@ -3,11 +3,11 @@
     flex-wrap: wrap;
     align-items: center;
     flex-direction: column;
-    width: 40%;
     background-color: rgb(255, 255, 255, 0.8);
     gap: 20px;
     border-radius: 15px;
     padding: 20px;
+    min-width: 375px;
     }
 
     .top5Photos img {
@@ -34,6 +34,14 @@
         padding-top: 100px;
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 50px;
+        padding-bottom: 50px;
+    }
+    .modifCGU{
+        text-align: center;
+        background-color: white;
+        border-radius: 15px;
     }
     .singlePhoto{
         width: 100%;
@@ -87,10 +95,11 @@
     .linksStatsAndWaiting{
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         margin-top: 20px;
         width: 50%;
+        gap: 50px;
     }
 
     .linksStatsAndWaiting a{

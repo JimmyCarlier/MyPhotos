@@ -17,10 +17,7 @@ const Header = () => {
             <li>Concours</li>
             <li>Voter</li>
             <li>
-              <Link to="/connexion">Se connecter</Link>
-            </li>
-            <li>
-              <Link to="/inscription">S'inscrire</Link>
+              <Link className="connexionIcon" to="/connexion"><img src="/connexion.png" alt="connexion icon" /></Link>
             </li>
           </div>
         </menu>

@@ -1,5 +1,8 @@
 .container {
-  background-color: rgba(0, 0, 0, 0.3);
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .container-nav {
@@ -12,8 +15,11 @@
 .boutton-nav {
   display: flex;
   gap: 80px;
+  align-items: center;
 }
-
 .logo img {
-  height: 130px;
+  height: 100px;
+}
+.connexionIcon img{
+  height: 50px;
 }

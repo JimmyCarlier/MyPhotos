@@ -93,10 +93,7 @@ const HomePage = () => {
               photo.map((e) => {
                 return (
                   <div className="image-card">
-                    <img src={"http://localhost:3000/" + e.file} alt="" />
-                    <div className="container-infoPicture">
-                      <p>{e.description}</p>
-                      <p>Nombre de votes : {e.votes}</p>
+                    <img src={"http://localhost:3000/" + e.file} alt={e.description} />
                       <button
                         className="btn-choose"
                         onClick={() => handleVote(e)}
@@ -104,7 +101,6 @@ const HomePage = () => {
                         Voter
                       </button>
                     </div>
-                  </div>
                 );
               })}
           </div>

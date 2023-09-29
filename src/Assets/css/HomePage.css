@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
+  position: relative;
 }
 
 .container-info h1 {
@@ -25,13 +26,17 @@
 }
 
 .btn-choose {
-  padding: 20px 25px;
-  width: 40%;
+  padding: 5px 0px;
+  width: 150px;
   margin: 0 auto;
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
   font-size: 1.5rem;
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 .reglement-video {
@@ -41,6 +46,7 @@
   align-items: center;
   gap: 50px;
   height: 500px;
+  position: relative;
 }
 .container-picture {
   background-image: url("../../../public/AjouterunePhoto.jpg");
@@ -48,6 +54,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-bottom: 200px;
 }
 
 .container-picture .container-title {
@@ -74,12 +81,14 @@
 }
 
 .main-container img {
-  width: 100%;
-  height: 600px;
+  width: 600px;
+  height: 350px;
   object-fit: cover;
+  border-radius: 15px;
 }
 
 .image-card {
+  position: relative;
   width: 45%;
   margin-bottom: 100px;
   display: flex;
