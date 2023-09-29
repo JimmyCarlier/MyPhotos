@@ -100,7 +100,7 @@ const HomePage = () => {
     document.title = "Home Page";
     SecurityCheckSession();
     dataPicture();
-  }, []);
+  }, [vote]);
 
   return (
     <>
@@ -109,8 +109,8 @@ const HomePage = () => {
         <section className="first-section">
           <div className="container-info">
             <h1>Ne manquez pas l'occasion de voter pour la photo du jour</h1>
-            <button className="btn-choose">
-              <a href="#anchor-picture">Choisir ici !</a>
+            <button className="btn-choose2">
+              <a href="#anchor-picture">v</a>
             </button>
           </div>
         </section>

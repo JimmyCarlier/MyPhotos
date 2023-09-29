@@ -131,7 +131,7 @@ const EspaceMembre = () => {
         <section className="user-interface">
           <div className="add-picture">
             <div>
-              <Link to="/member/upload">
+              <Link to="/membre/soumettre">
                 <boutton className="btn-picture">Ajouter une photo</boutton>
               </Link>
             </div>
