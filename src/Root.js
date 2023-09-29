@@ -31,8 +31,8 @@ function Root() {
       <Route path="/inscription" element={<SignUp />} />
       <Route path="/connexion" element={<SignIn />} />
       <Route path="/mention" element={<PageMentionLegal />}></Route>
-      <Route path="/member" element={<EspaceMembre />}></Route>
-      <Route path="/member/upload" element={<UploadContest />} />
+      <Route path="/membre" element={<EspaceMembre />}></Route>
+      <Route path="/membre/soumettre" element={<UploadContest />} />
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/admin/en-attente" element={<EnAttente />} />
       <Route path="/admin/*" element={<AdminDashboard />} />
