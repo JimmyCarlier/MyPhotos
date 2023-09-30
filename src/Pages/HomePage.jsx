@@ -5,11 +5,14 @@ import { UseSession } from "../Components/UseSession";
 import Swal from "sweetalert2";
 import "../Assets/css/HomePage.css";
 import Footer from "../Components/Footer";
+import Pagination from "./Pagination";
 
 const HomePage = () => {
   const [photo, setPhoto] = useState([]);
-  const [vote, setVote] = useState();
-  const [availableVote, setAvailableVote] = useState(3);
+  const photoUrls = photo.map(photo => photo.file);
+  const photoAlts = photo.map(photo => photo.description);
+  const photoIds = photo.map(photo => photo.id);
+
   const dataPicture = async () => {
     const response = await fetch(`http://localhost:3000/file/allPhotos/`);
     const responseJson = await response.json();
@@ -20,87 +23,11 @@ const HomePage = () => {
     setPhoto(array);
   };
 
-  const handleVote = async (picture) => {
-    let titleTexte;
-    if (availableVote === 1) {
-      titleTexte = `Vous êtes sur le point d'utiliser votre dernier vote`;
-    } else {
-      titleTexte = `Vous êtes sur le point d'utiliser un de vos ${availableVote} votes disponible`;
-    }
-    Swal.fire({
-      title: titleTexte,
-      text: "Validez vous votre choix ?",
-      icon: "question",
-      iconColor: "white",
-      color: "white",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Valider",
-      cancelButtonText: "Annuler",
-      background: "rgba(0, 0, 0, 0.5)",
-      allowOutsideClick: true,
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        setAvailableVote(availableVote - 1);
-        Swal.fire("Vote validé");
-        if (!localStorage.getItem("vote")) {
-          localStorage.setItem("vote", 0);
-        }
-        var attempts = parseInt(localStorage.getItem("vote"));
-        localStorage.setItem("vote", ++attempts);
-
-        if (parseInt(localStorage.getItem("vote")) === 1) {
-          const day = {
-            date: Date.now(),
-          };
-          localStorage.setItem("date", day.date);
-        }
-        const addVote = {
-          votes: picture.votes + 1,
-        };
-
-        const token = UseSession();
-
-        const fetchOption = {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(addVote),
-        };
-
-        const fetchUpdate = await fetch(
-          `http://localhost:3000/file/updateVote/${picture.id}`,
-          fetchOption
-        );
-
-        setVote(fetchUpdate);
-      }
-    });
-  };
-  if (
-    localStorage.getItem("vote") &&
-    parseInt(localStorage.getItem("vote")) === 3
-  ) {
-    const allBtn = document.querySelectorAll(".btn-disapear");
-    allBtn.forEach((e) => {
-      e.style.display = "none";
-    });
-  }
-
-  if (
-    localStorage.getItem("date") &&
-    parseInt(localStorage.getItem("date")) + 86400000 <= Date.now()
-  ) {
-    localStorage.removeItem("date");
-    localStorage.removeItem("vote");
-  }
   useEffect(() => {
     document.title = "Home Page";
     SecurityCheckSession();
     dataPicture();
-  }, [vote]);
+  }, []);
 
   return (
     <>
@@ -108,13 +35,16 @@ const HomePage = () => {
       <main>
         <section className="first-section">
           <div className="container-info">
-            <h1>Ne manquez pas l'occasion de voter pour la photo du jour</h1>
+            <h1>Ne manquez pas l'occasion de voter pour la photo du jour <span>
             <button className="btn-choose2">
-              <a href="#anchor-picture">v</a>
+              <a href="#anchor-règle">
+              <svg xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 -960 960 960" width="50"><path d="m480-320 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160Zm0 240q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+              </a>
             </button>
+              </span></h1>
           </div>
         </section>
-        <section className="reglement-video">
+        <section id="anchor-règle" className="reglement-video">
         <div class="custom-shape-divider-top-1696005298">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M649.97 0L550.03 0 599.91 54.12 649.97 0z" class="shape-fill"></path>
@@ -130,20 +60,8 @@ const HomePage = () => {
             <h3>Concours</h3>
           </div>
           <div className="main-container">
-            {photo.length != 0 &&
-              photo.map((e) => {
-                return (
-                  <div className="image-card">
-                    <img src={"http://localhost:3000/" + e.file} alt={e.description} />
-                      <button
-                        className="btn-choose btn-disapear"
-                        onClick={() => handleVote(e)}
-                      >
-                        Voter
-                      </button>
-                    </div>
-                );
-              })}
+              { photo.length !== 0 &&
+              <Pagination photos={photoUrls} alts={photoAlts} id={photoIds}/>}
           </div>
         </section>
       </main>

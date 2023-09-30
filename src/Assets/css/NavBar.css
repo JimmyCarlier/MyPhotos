@@ -4,13 +4,15 @@
   top: 0;
   width: 100%;
   padding: 0 50px;
+  z-index: 1;
+
 }
 
 .container-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 50px 20px;
+  padding: 10px 20px;
 }
 
 .leave {

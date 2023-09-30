@@ -27,7 +27,8 @@
 
 .container-info h1 {
   padding: 0 40px;
-  background-color: white;
+  background-color: rgb(255, 255, 255,0.5);
+  position: relative;
 }
 .btn-choose2{
   width: 50px;
@@ -36,11 +37,11 @@
   border: none;
   border-radius: 10px;
   border-radius: 5000px;
-  /* background-color: rgba(0, 0, 0, 0); */
+  background-color: rgb(255, 255, 255,0.5);
   font-size: 1.5rem;
   cursor: pointer;
   position: absolute;
-  top: 200px;
+  bottom: -80px;
   left: 50%;
   transform: translate(-50%, 50%);
 }
@@ -53,9 +54,10 @@
   font-size: 1.5rem;
   cursor: pointer;
   position: absolute;
-  bottom: 0;
+  bottom: 6px;
   left: 50%;
-  transform: translate(-50%, 50%);
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  transform: translate(-50%, 0%);
 }
 
 .reglement-video {
@@ -66,6 +68,7 @@
   gap: 30px;
   height: 100vh;
   position: relative;
+  padding-top: 50px;
 }
 
 .custom-shape-divider-top-1696005298 {
@@ -115,7 +118,6 @@
   text-align: center;
   font-size: 5rem;
   background-color: black;
-  border-radius: 100px;
   margin-top: 80px;
   padding: 5px 15px;
   color: white;
@@ -125,7 +127,6 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding: 0 5vw;
 }
 
 .btn-update {
@@ -153,25 +154,25 @@
 }
 
 .main-container img {
-  width: 600px;
+  width: 45vw;
   min-width: 375px;
-  height: 350px;
-  min-height: 260px;
+  height: calc(45vw * 0.75);
+  min-height: calc(375px * 0.75);
   object-fit: cover;
   border-radius: 15px;
 }
 
 .image-card {
   position: relative;
-  width: 600px;
+  width: 45vw;
   min-width: 375px;
-  height: 350px;
-  min-height: 260px;
+  height: calc(45vw * 0.75);
+  min-height: calc(375px * 0.75);
+  gap: 50px;
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-around;
 }
 
 .container-infoPicture {
@@ -185,4 +186,54 @@
 
 .container-infoPicture p:nth-child(2) {
   padding-bottom: 30px;
+}
+
+.tdPhotos{
+  position: relative;
+}
+
+.btnPrevNext{
+  width: 150px;
+  height: 50px;
+}
+.containerBtnPrevNext{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.AllPhotosPagination{
+  margin-bottom: 100px;
+}
+
+td:hover {
+  cursor: pointer;
+}
+table{
+  border-spacing: 1rem 5px;
+}
+
+.MyModalPhotoFullScreen{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100vw; /* Full width */
+  padding-top: 1%;
+  padding-left: 2%;
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+  cursor: pointer;
+  object-fit:contain;
+}
+
+.MyModalPhotoFullScreen img{
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
 }

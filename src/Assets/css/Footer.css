@@ -5,11 +5,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 50px 20px;
   background-color: rgb(217, 217, 217, 0.8);
   color: black;
+  padding: 30px 50px;
 }
-
+.footer-nav svg {
+  cursor: pointer;
+}
 .row-to-up {
   font-size: 3rem;
   cursor: pointer;

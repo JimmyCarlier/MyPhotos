@@ -17,7 +17,7 @@
 }
 
 .containerBTNAllSelected{
-    position: absolute;
+    position: fixed;
     top: 90vh;
     display: flex;
     width: 50%;

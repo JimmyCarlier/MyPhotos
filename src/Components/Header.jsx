@@ -5,13 +5,12 @@ import { useEffect, useState } from "react";
 import { handleDisconnect } from "../Components/HandleDisconnect";
 const Header = () => {
   const [user, setUser] = useState();
-  function findUser() {
-    const user = SecurityCheckSession();
-    setUser(user);
-  }
-
+  console.log(user)
   useEffect(() => {
-    findUser();
+    if(SecurityCheckSession() !== false)
+    {
+      setUser(SecurityCheckSession());
+    }
   }, []);
   return (
     <header>
@@ -48,8 +47,8 @@ const Header = () => {
                 </Link>
               </li>
             </div>
+              <li>Espace membre : {user.firstname} {user.lastname}</li>
             <div className="boutton-nav">
-              <li>Page de {user.user}</li>
 
               <li>
                 <Link to="/membre" className="connexionIcon">

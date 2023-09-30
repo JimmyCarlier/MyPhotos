@@ -6,10 +6,28 @@ import { Link } from "react-router-dom";
 import "../../Assets/css/Pages/Membres/SpaceMember.css";
 import Swal from "sweetalert2";
 import Cookies from "js-cookie";
+import Pagination from "../PaginationMember";
 
 const EspaceMembre = () => {
   const [picture, setPicture] = useState([]);
-  const [filter, setFilter] = useState([]);
+  const [filtered, setFiltered] = useState("empty");
+  const photoUrls= [];
+  const photoAlts = [];
+  const photoIds = [];
+  const photoStatus = [];
+  const photoVotes = [];
+  if (picture.length != 0 && filtered === "empty") {
+    setFiltered(picture);
+  }
+  if (picture.length != 0 && filtered != "empty") {
+    filtered.map((e) => {
+      photoUrls.push(e.file);
+      photoAlts.push(e.description);
+      photoIds.push(e.id);
+      photoStatus.push(e.status);
+      photoVotes.push(e.votes);
+    });
+  }
   const showAllPhotos = async () => {
     const token = UseSession();
 
@@ -28,9 +46,9 @@ const EspaceMembre = () => {
 
   const handleValidPicture = (e) => {
     if (e != null) {
-      setFilter(picture.filter((pic) => pic.status === e));
+      setFiltered(picture.filter((pic) => pic.status === e));
     } else {
-      setFilter(picture);
+      setFiltered(picture);
     }
   };
 
@@ -112,18 +130,14 @@ const EspaceMembre = () => {
         }
       })
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Une erreur à était rencontré",
-          showConfirmButton: true,
-        });
+        return
       });
   };
 
   useEffect(() => {
     showAllPhotos();
-  }, []);
+    document.title = "Espace Membre";
+  }, [filtered]);
   return (
     <>
       <Header />
@@ -132,7 +146,7 @@ const EspaceMembre = () => {
           <div className="add-picture">
             <div>
               <Link to="/membre/soumettre">
-                <boutton className="btn-picture">Ajouter une photo</boutton>
+                <boutton className="btn-picture">Ajouter des photos</boutton>
               </Link>
             </div>
             <div>
@@ -149,7 +163,7 @@ const EspaceMembre = () => {
                 onClick={() => handleValidPicture("publie")}
                 className="btn-filter"
               >
-                Validé
+                Publié
               </button>{" "}
               <button
                 onClick={() => handleValidPicture("nonpublie")}
@@ -171,7 +185,7 @@ const EspaceMembre = () => {
               </button>
             </p>
           </div>
-          <div className="own-picture">
+          {/* <div className="own-picture">
             {picture.length != 0 && filter.length != 0 ? (
               filter.map((e) => {
                 return (
@@ -181,7 +195,9 @@ const EspaceMembre = () => {
                       alt=""
                       className="picture-status"
                     />
-                    ;{e.status === "publie" && <p>Votes : {e.votes}</p>}
+                    {e.status === "publie" &&
+                      e.votes !== null &&
+                    <p className="votesMembre">Votes : {e.votes}</p>}
                     {e.status === "publie" && (
                       <div className="published-pic">Publié</div>
                     )}
@@ -197,6 +213,9 @@ const EspaceMembre = () => {
             ) : (
               <p className="empty">Aucune photo</p>
             )}
+          </div> */}
+          <div className="own-picture">
+            <Pagination photos={photoUrls} alts={photoAlts} id={photoIds} status={photoStatus} votes={photoVotes} />
           </div>
         </section>
       </main>

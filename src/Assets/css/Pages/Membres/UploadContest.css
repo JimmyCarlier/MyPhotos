@@ -1,17 +1,40 @@
 .UploadContainer{
+    background-image: url("/public/BackGroundImagePageAjouterUneImage.jpg");
+    background-size: cover;
+    background-position: fixed;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     user-select: none;
+    padding: 200px 0;
+}
+.UploadContainer>div{
+    width: 80%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255,0.8);
+}
+.fillerHeader{
+    width: 100%;
+    height: 126px;
+    background-color: rgb(255, 255, 255,0.7);
+    position: absolute;
+    z-index: 0;
 }
 .UploadContainerFileUploader{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 80%;
     height: 300px;
 }
 .guZdik{
@@ -20,16 +43,26 @@
     height: 500px !important;
     border: 1PX SOLID BLACK !important;}
 .UploadContainerPreviewCard>form{
+    width: 100%;
     display: flex;
+    justify-content: center;
     gap: 50px;
     margin-top: 20px;
     flex-wrap: wrap;
+}
+.myCardPhoto{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
 }
 .UploadContainerPreviewCard .myCardPhoto{
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 10px;
-    padding: 15px;
+    padding: 50px;
 }
 .cardTitle{
     font-size: 1rem;
@@ -48,9 +81,10 @@
     gap: 10px;
 }
 .cardBody img{
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
+    height: 700px;
+    overflow: hidden;
+    object-fit: cover;
+    cursor: pointer;;
 }
 .mybtnSubmit{
     width: 100%;
@@ -75,3 +109,26 @@
     background-color: #fff;
     box-shadow: 0 0 10px #282828;
 }
+
+.MyModalPhotoFullScreen{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full width */
+    padding-top: 1%;
+    padding-left: 2%;
+    height: 100vh; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    cursor: pointer;
+    object-fit:contain;
+  }
+  
+  .MyModalPhotoFullScreen img{
+    width: 100%;
+    height: 100%;
+    object-fit:contain;
+  }
