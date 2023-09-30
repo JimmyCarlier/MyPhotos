@@ -4,11 +4,13 @@ import { SecurityCheckSession } from "../Components/SecurityCheckSession";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import "../Assets/css/Pages/signIn.css";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [mail, setMail] = useState();
   const handleSubmitSignIn = async (e) => {
     e.preventDefault();
     const email = e.target[0].value;
@@ -65,6 +67,25 @@ const SignIn = () => {
       passwordInput.setAttribute("type", "password");
     }
   };
+
+  const showForm = () => {
+    setMail(!mail);
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    const email = e.target.mail.value;
+    const fetchI = await fetch(`http://localhost:3000/user/password-reset`, {
+      method: "POST",
+      body: JSON.stringify({
+        emailId: email,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   return (
     <>
       <svg
@@ -129,11 +150,16 @@ const SignIn = () => {
               <div className="containerBTN">
                 <button type="submit">Se connecter</button>
               </div>
-              <p>
-                Mot de passe oublié ? <Link>cliquez ici</Link>
-              </p>
+              <boutton onClick={showForm}>Mot de passe oublié ?</boutton>
             </div>
           </form>
+          {mail && (
+            <form onSubmit={handleResetPassword}>
+              <label htmlFor="mail">Entrez votre adresse e-mail</label>
+              <input type="mail" id="mail" className="mail" />
+              <input type="submit" value="envoyer" />
+            </form>
+          )}
         </div>
       </section>
     </>

@@ -14,7 +14,7 @@ import UploadContest from "./Pages/Members/UploadContest";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import EnAttente from "./Pages/Admin/EnAttente";
 import EspaceMembre from "./Pages/Members/EspaceMembre";
-
+import UpdatePsw from "./Pages/Members/UpdatePsw";
 
 // Router singleton created
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
@@ -36,6 +36,7 @@ function Root() {
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/admin/en-attente" element={<EnAttente />} />
       <Route path="/admin/*" element={<AdminDashboard />} />
+      <Route path="/changePassword" element={<UpdatePsw />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
