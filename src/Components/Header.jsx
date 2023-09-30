@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 import { handleDisconnect } from "../Components/HandleDisconnect";
 const Header = () => {
   const [user, setUser] = useState();
-  console.log(user)
+
   useEffect(() => {
-    if(SecurityCheckSession() !== false)
-    {
+    if (SecurityCheckSession() !== false) {
       setUser(SecurityCheckSession());
     }
   }, []);
@@ -47,14 +46,23 @@ const Header = () => {
                 </Link>
               </li>
             </div>
-              <li>Espace membre : {user.firstname} {user.lastname}</li>
+            <li>
+              Membre connecté : {user.firstname} {user.lastname}
+            </li>
             <div className="boutton-nav">
-
               <li>
-                <Link to="/membre" className="connexionIcon">
-                  {" "}
-                  <img src="/connexion.png" alt="connexion icon" />
-                </Link>
+                {user && user.role === 1 && (
+                  <Link to="/admin" className="connexionIcon">
+                    {" "}
+                    <img src="/connexion.png" alt="connexion icon" />
+                  </Link>
+                )}
+                {user && user.role === 2 && (
+                  <Link to="/membre" className="connexionIcon">
+                    {" "}
+                    <img src="/connexion.png" alt="connexion icon" />
+                  </Link>
+                )}
               </li>
               <li>
                 <span

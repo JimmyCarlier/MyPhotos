@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import "../../Assets/css/Pages/signIn.css";
 
 const UpdatePsw = () => {
   const queryString = window.location.search;
@@ -35,14 +36,26 @@ const UpdatePsw = () => {
   };
 
   return (
-    <section>
-      <form onSubmit={fetchUpdatePassword}>
-        <label htmlFor="">Nouveau mot de passe</label>
-        <input type="password" id="newPassword" />
-        <label htmlFor="">Confirmer le mot de passe</label>
-        <input type="password" id="confirmPassword" />
-        <input type="submit" value="envoyer" />
-      </form>
+    <section className="containerConnexion">
+      <div className="containerHeaderConnection container-psw">
+        <img src="/connexion.png" alt="connexion icon" className="user-psw" />
+        <h1>Changement de mot de passe</h1>
+      </div>
+      <div className="containerBodyConnexion">
+        <form onSubmit={fetchUpdatePassword}>
+          <div className="signInFormEmail">
+            <label htmlFor="">Nouveau mot de passe</label>
+            <input type="password" id="newPassword" />
+          </div>
+          <div className="signInFormPassword">
+            <label htmlFor="">Confirmer le mot de passe</label>
+            <input type="password" id="confirmPassword" />
+          </div>
+          <div className="containerBTN">
+            <button type="submit">Valider</button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };
