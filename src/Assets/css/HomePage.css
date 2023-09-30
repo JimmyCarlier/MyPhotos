@@ -6,13 +6,17 @@
   background-size: cover;
   display: flex;
   justify-content: center;
-  padding: 300px;
+  height: 100vh;
+  padding-top: 300px;
 }
 
 .container-info {
-  padding: 80px;
-  background-color: rgba(0, 0, 0, 0.542);
-  color: white;
+  padding: 50px;
+  /* background-color: rgba(0, 0, 0, 0.542); */
+  color: black;
+  width: 80%;
+  font-size: 2rem;
+  height: 200px;
   border-radius: 15px;
   text-align: center;
   display: flex;
@@ -23,8 +27,23 @@
 
 .container-info h1 {
   padding: 0 40px;
+  background-color: white;
 }
-
+.btn-choose2{
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 10px;
+  border-radius: 5000px;
+  /* background-color: rgba(0, 0, 0, 0); */
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
 .btn-choose {
   padding: 5px 0px;
   width: 150px;
@@ -44,9 +63,37 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-  height: 500px;
+  gap: 30px;
+  height: 100vh;
   position: relative;
+}
+
+.custom-shape-divider-top-1696005298 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1696005298 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 81px;
+  z-index: -1;
+}
+
+.custom-shape-divider-top-1696005298 .shape-fill {
+  fill: #1F4653;
+  z-index: -1;
+}
+
+.reglement-video div{
+
+  height: 90vh;
 }
 .container-picture {
   background-image: url("../../../public/AjouterunePhoto.jpg");
@@ -63,19 +110,20 @@
   display: flex;
   justify-content: center;
 }
+
 .container-picture div h3 {
   text-align: center;
-  font-size: 6rem;
+  font-size: 5rem;
   background-color: black;
   border-radius: 100px;
-  width: 30%;
   margin-top: 80px;
+  padding: 5px 15px;
   color: white;
 }
 
 .main-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding: 0 5vw;
 }
@@ -106,14 +154,19 @@
 
 .main-container img {
   width: 600px;
+  min-width: 375px;
   height: 350px;
+  min-height: 260px;
   object-fit: cover;
   border-radius: 15px;
 }
 
 .image-card {
   position: relative;
-  width: 45%;
+  width: 600px;
+  min-width: 375px;
+  height: 350px;
+  min-height: 260px;
   margin-bottom: 100px;
   display: flex;
   flex-direction: column;

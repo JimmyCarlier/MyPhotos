@@ -100,7 +100,7 @@ const HomePage = () => {
     document.title = "Home Page";
     SecurityCheckSession();
     dataPicture();
-  }, []);
+  }, [vote]);
 
   return (
     <>
@@ -109,15 +109,22 @@ const HomePage = () => {
         <section className="first-section">
           <div className="container-info">
             <h1>Ne manquez pas l'occasion de voter pour la photo du jour</h1>
-            <button className="btn-choose">
-              <a href="#anchor-picture">Choisir ici !</a>
+            <button className="btn-choose2">
+              <a href="#anchor-picture">v</a>
             </button>
           </div>
         </section>
         <section className="reglement-video">
-          <h2>Vidéo de réglement</h2>
-          <button className="btn-choose">Compris !</button>
-        </section>
+        <div class="custom-shape-divider-top-1696005298">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M649.97 0L550.03 0 599.91 54.12 649.97 0z" class="shape-fill"></path>
+            </svg>
+        </div>
+          <h2>Présentation et règlement</h2>
+          <div>
+          <iframe width="840" height="473" src="https://www.youtube.com/embed/uwdhp9f5rTY?si=3emWUEw7InJnzrR2" title="YouTube video player" frameborder="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>        
+          </div>
+          </section>
         <section id="anchor-picture" className="container-picture">
           <div className="container-title">
             <h3>Concours</h3>
